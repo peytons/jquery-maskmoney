@@ -33,6 +33,7 @@
 				symbol: '',
 				symbolStay: false,
 				thousands: ',',
+				thousandsStay: true,
 				decimal: '.',
 				precision: 2,
 				defaultZero: true,
@@ -187,6 +188,10 @@
 						} else if (settings.symbolStay && input.val() == settings.symbol){
 							input.val(setSymbol(getDefaultMask()));
 						}
+						if (!settings.thousandsStay){
+							input.val(input.val().replace(settings.thousands,''));
+						}
+
 					}
 				}
 
