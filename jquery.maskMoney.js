@@ -121,8 +121,13 @@
 
 						if(startPos == endPos){
 							// Remove single character
-							x.value = x.value.substring(0, startPos - 1) + x.value.substring(endPos, x.value.length);
-							startPos = startPos - 1;
+                                                        keepUpTo = startPos - 1
+                                                        if (x.value.substring(startPos - 1, startPos) == settings.thousands) {
+                                                            // there's a separator in the way
+                                                            keepUpTo--;
+                                                        }
+                                                        x.value = x.value.substring(0, keepUpTo) + x.value.substring(endPos, x.value.length);
+							startPos = keepUpTo;
 						} else {
 							// Remove multiple characters
 							x.value = x.value.substring(0, startPos) + x.value.substring(endPos, x.value.length);
